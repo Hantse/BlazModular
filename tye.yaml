@@ -1,0 +1,42 @@
+name: blazmodular
+namespace: blazmodular
+network: blazmodular_network
+#extensions:
+#  - name: zipkin
+#  - name: seq
+#    logPath: ./.logs
+
+services:
+- name: nuget-server
+  image: loicsharma/baget:latest
+  env:
+  - name: ApiKey
+    value: "ApiKeyForTestAndDev"
+  - name: Storage__Type
+    value: FileSystem
+  - name: Storage__Path
+    value: /var/baget/packages
+  - name: Database__Type
+    value: SqlServer
+  - name: Database__ConnectionString
+    value: "Server=tcp:XXXXXXXXX,1433;Initial Catalog=BLAZ_MODULAR;Persist Security Info=False;User ID=XX;Password=XXXXXX;MultipleActiveResultSets=True;Connection Timeout=30;"     
+  - name: Search__Type
+    value: Database        
+  bindings:
+  - port: 5555
+    containerPort: 80
+    protocol: http
+  volumes:
+    - source: ./nuget-server/
+      target: /var/baget
+
+- name: blazmodular-sample
+  project: samples/SampleApp/Server/SampleApp.Server.csproj
+  replicas: 1
+  bindings:
+  - port: 5001
+    protocol: https
+  env:
+  - name: ASPNETCORE_ENVIRONMENT
+    value: Development
+

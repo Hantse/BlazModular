@@ -1,0 +1,9 @@
+﻿@page "/test"
+
+<div class="my-component">
+    This component is defined in the <strong>FirstRazorModule</strong> library.
+</div>
+
+<Video AutoPlay="true" Source="@("http://stream.pyxion.world/hls/stream.m3u8")" StreamingLibrary="StreamingLibrary.Hls" />
+
+<AntDesign.Button Danger OnClick="@(() => TestService.Test())">Oups ...</AntDesign.Button>

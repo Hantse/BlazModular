@@ -1,0 +1,15 @@
+﻿@page "/module"
+@if (modules != null)
+{
+    <Table TItem="SearchResult" DataSource="@modules">
+        <Column Title="Module name" @bind-Field="@context.PackageId" Sortable />
+        <Column Title="Version" @bind-Field="@context.Version" Sortable />
+        <ActionColumn>
+            <Space>
+                <SpaceItem>
+                    <Button Type="@ButtonType.Primary" OnClick="@(async () => await InstallModuleAsync(context.PackageId))">Install</Button>
+                </SpaceItem>
+            </Space>
+        </ActionColumn>
+    </Table>
+}

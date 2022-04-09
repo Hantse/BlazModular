@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="AntDesign" Version="0.10.6-alpha.2" />
+	  <PackageReference Include="BaGet.Protocol" Version="0.4.0-preview2" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-preview.2.22153.2" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.0-preview.2.22153.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Contracts\Request\" />
+  </ItemGroup>
+
+</Project>

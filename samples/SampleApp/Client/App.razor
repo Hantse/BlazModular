@@ -1,0 +1,25 @@
+﻿@using System.Reflection
+@using BlazModular.Wasm.Services
+
+<Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="AssemblyService.GetAssemblies()">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p role="alert">Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+
+<AntContainer />
+<BlazModular.Wasm.Shared.ModuleContainer AssembliesLoadedChanged="AssembliesChanged" />
+
+@code {
+    public async Task AssembliesChanged(List<Assembly> lazyLoadedAssemblies)
+    {
+        StateHasChanged();
+    }
+}
